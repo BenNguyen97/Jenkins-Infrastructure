@@ -122,24 +122,6 @@ resource "aws_instance" "jenkins_worker" {
   }
 }
 
-# # create more worker
-# resource "aws_instance" "jenkins_worker" {
-#   count         = var.worker_count
-#   ami           = data.aws_ami.amazon_linux.id
-#   instance_type = var.instance_type
-#   subnet_id     = aws_subnet.jenkins_subnet.id
-#   key_name      = var.key_name
-#   security_groups = [aws_security_group.jenkins_sg.id]
-
-#   user_data = file("user_data/jenkins_worker.sh")
-
-#   tags = {
-#     Name        = "Jenkins-Worker-${count.index + 1}"
-#     Role        = "Worker"
-#     Environment = "Development"
-#   }
-# }
-
 # Fetch AMI for Amazon Linux 2
 data "aws_ami" "amazon_linux" {
   most_recent = true
